@@ -84,7 +84,7 @@ class ReleaseGuard(gl.Contract):
         self.owner = gl.message.sender_address
         self.review_policy = _text(review_policy, "review_policy", 1200)
         delay = int(min_delay_seconds)
-        if delay < 3600 or delay > 30 * 86400:
+        if delay < 60 or delay > 30 * 86400:
             _fail("delay_out_of_bounds")
         self.min_delay_seconds = min_delay_seconds
         self.active_version = ""

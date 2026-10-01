@@ -16,11 +16,10 @@ The owner supplies manifest URLs and hashes, but cannot make forged source bytes
 2. `propose_upgrade` freezes the baseline reference, candidate reference, and project review policy. One proposal can be pending at a time.
 3. `assess_dimension` independently compares all locked source for `PERMISSIONS`, `EXTERNAL_CALLS`, or `MIGRATION`. Each transaction stores source-change paths, evidence status, a dimension-specific finding code, an outcome, and a concise rationale. Validators rerun the fetch and judgment and must agree on the substantive finding code and outcome; the rationale is advisory, not a consensus field.
 4. `finalize_review` requires all three assessments. A `FAIL` gives `REJECTED`; an `INSUFFICIENT_EVIDENCE` or `CONCERN` gives `NEEDS_REVIEW`; three `PASS` results give `TIMELOCKED`.
-5. After the configured delay, only the owner may call `activate_upgrade`. The contract records the new active manifest and keeps version history. The owner may cancel an assessing or timelocked proposal; rejected or review-needed proposals cannot activate.
+5. After the configured delay (60 seconds to 30 days), only the owner may call `activate_upgrade`. The contract records the new active manifest and keeps version history. The 60-second minimum supports a short live demonstration; operational deployments should choose a governance-appropriate delay. The owner may cancel an assessing or timelocked proposal; rejected or review-needed proposals cannot activate.
 
 Finding codes differ by dimension: permissions distinguish no expansion, controlled expansion, and unapproved expansion; external calls distinguish no new destination, reviewable new destination, and unapproved destination; migration distinguishes compatibility, uncertainty, and data-loss risk. These findings make the on-chain result more precise than a single generic classification.
 
 ## Limitations
 
 AI comparison can be wrong. The contract verifies the *listed* files, not repository completeness, compiled artifacts, runtime behavior, or security of unlisted dependencies. A malicious manifest can omit relevant files; users should pair this with a build provenance/coverage process. The owner could choose a weak policy or a bad initial baseline. The contract does not force an external deployment service to obey its active version. GitHub and network outages may cause review to remain incomplete or return insufficient evidence. Do not call this a production security guarantee.
-
