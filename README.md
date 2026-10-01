@@ -14,7 +14,13 @@ This is deliberately different from AgentPermit. It does not authorize one agent
 - `docs/SUBMISSION.md` — contribution wording and evidence checklist
 - `evidence/demo/module.py` — sample source with baseline and candidate versions in Git history
 - `evidence/demo/*.json` — commit-pinned review manifests (added after source commits)
-- `deployments/studionet.json` — live deployment record, once verified
+- `deployments/studionet.json` — verified live deployment and lifecycle record
+
+## Verified StudioNet demonstration
+
+The [deployed contract](https://explorer-studio.genlayer.com/address/0x00046b66f829c5841AFB8fb448d5609CE5037842) established baseline `1.0.0`, independently reviewed all three dimensions of candidate `1.1.0`, finalized three `PASS` findings, observed the timelock, and activated `1.1.0`. The [deployment record](deployments/studionet.json) lists every transaction, finding, pinned manifest URL, and exact deployed source commit (`bcbbd9880c8d66323e0b45024876661de451699f`). The [GitHub validation run](https://github.com/Demigodd00/release-guard/actions/runs/36860010543) passed lint and 11 direct tests.
+
+This instance used a disposable StudioNet-only owner wallet, whose private key was not retained. It demonstrates the full lifecycle but cannot be controlled for future upgrades. Redeploy with a retained owner wallet for operational use; choose a longer timelock and add independent build/provenance checks.
 
 ## Local verification
 
@@ -24,5 +30,4 @@ genvm-lint check contracts/ReleaseGuard.py
 python -m pytest tests/direct -q
 ```
 
-The pinned GenVM runner is declared in the first line of the contract. Test mocks do not replace a live consensus/deployment check. See `docs/PROTOCOL.md` for what the on-chain record does and does not prove.
-
+The pinned GenVM runner is declared in the first line of the contract. See `docs/PROTOCOL.md` for what the on-chain record does and does not prove.

@@ -1,0 +1,74 @@
+{
+  "network": "studionet",
+  "chain_id": 61999,
+  "status": "VERIFIED",
+  "source_commit": "bcbbd9880c8d66323e0b45024876661de451699f",
+  "source_sha256": "d9e6969c3b03817c3ca50ccd812a31c2e46557619ab7b4c0140be5c030c9b8a7",
+  "contract_address": "0x00046b66f829c5841AFB8fb448d5609CE5037842",
+  "explorer": "https://explorer-studio.genlayer.com/address/0x00046b66f829c5841AFB8fb448d5609CE5037842",
+  "deploy_transaction": "0xdbdc7ba7378f4cee63b24ffe5ad943ea2faba73ff6d2720266a5ada0894fd16a",
+  "deployed_at": "2026-10-01T12:18:21.037897+00:00",
+  "wallet_policy": "disposable StudioNet-only owner; private key not retained",
+  "owner": "0xD9CB876c8e38F31b91676afa4235fC40471CB05A",
+  "baseline": {
+    "url": "https://raw.githubusercontent.com/Demigodd00/release-guard/bcbbd9880c8d66323e0b45024876661de451699f/evidence/demo/baseline.json",
+    "sha256": "e54dae423c571b16819ad2daa417c9311ca5d11c885dc1816534e2d5770e8e74",
+    "transaction": "0x262ef6c5e86265306d9f84c1027eba4c8ae9e9a5ad2801a2a3f9cfc3c7dd6768"
+  },
+  "candidate": {
+    "url": "https://raw.githubusercontent.com/Demigodd00/release-guard/bcbbd9880c8d66323e0b45024876661de451699f/evidence/demo/candidate.json",
+    "sha256": "61a52d5906439a5ed29453d9347a54826e817eb9ae50c03558436ca8b055b644",
+    "proposal_transaction": "0x7cfaa7b7eeb9d4df2911d6b79cd70bc4cb2b61ecada4cc139f0e483455811b8e"
+  },
+  "assessments": {
+    "PERMISSIONS": {
+      "transaction": "0x9ab424ae03a6844b2c482a3d14c41ee26c1fcbcaf76bbaea14cce32c2bc40e17",
+      "attempts": [
+        "0x9ab424ae03a6844b2c482a3d14c41ee26c1fcbcaf76bbaea14cce32c2bc40e17"
+      ],
+      "finding": {
+        "changed_files": [
+          "evidence/demo/module.py"
+        ],
+        "evidence_verified": true,
+        "finding_code": "NO_EXPANSION",
+        "outcome": "PASS",
+        "reason": "PERMISSIONS and outbound domain are unchanged from baseline: still only \"read\" and api.example.com. No permission or domain expansion is present."
+      }
+    },
+    "EXTERNAL_CALLS": {
+      "transaction": "0x612b5d8ee6964d268f75a7d33fe775fae8de5b839fad1f7412ee54cf599fa376",
+      "attempts": [
+        "0x612b5d8ee6964d268f75a7d33fe775fae8de5b839fad1f7412ee54cf599fa376"
+      ],
+      "finding": {
+        "changed_files": [
+          "evidence/demo/module.py"
+        ],
+        "evidence_verified": true,
+        "finding_code": "NO_NEW_DESTINATION",
+        "outcome": "PASS",
+        "reason": "The candidate source maintains the same ALLOWED_DOMAINS and fetch_target URL as the baseline."
+      }
+    },
+    "MIGRATION": {
+      "transaction": "0x6090a631f6d7692a91e2d7d6f36575aa0dc447e15179242f79895848ddf79024",
+      "attempts": [
+        "0x6090a631f6d7692a91e2d7d6f36575aa0dc447e15179242f79895848ddf79024"
+      ],
+      "finding": {
+        "changed_files": [
+          "evidence/demo/module.py"
+        ],
+        "evidence_verified": true,
+        "finding_code": "COMPATIBLE",
+        "outcome": "PASS",
+        "reason": "Migration preserves all existing record fields and values and only adds an optional schema_version when absent; no migration-related incompatibility is evident."
+      }
+    }
+  },
+  "finalize_transaction": "0xfa0af9f3fb4862e72f865f4ebebf1d54159eb8ab02e1f9b1e814c461f53f2d1b",
+  "activate_transaction": "0xf6559c01fb2d0d17138d3648242daf186fcf2fdd383517659707633d14740b84",
+  "observed_proposal_status": "ACTIVATED",
+  "observed_active_version": "1.1.0"
+}
