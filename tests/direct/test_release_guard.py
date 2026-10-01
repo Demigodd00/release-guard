@@ -180,6 +180,15 @@ def test_validator_rejects_material_disagreement(direct_vm, direct_deploy, direc
     assert direct_vm.run_validator(leader_result=leader) is False
 
 
+def test_malformed_llm_finding_does_not_persist(direct_vm, direct_deploy, direct_alice):
+    contract, url, sha = setup(direct_vm, direct_deploy, direct_alice)
+    proposal_id = propose(contract, url, sha)
+    direct_vm.mock_llm("Assess only PERMISSIONS", json.dumps({"finding_code": "SOMETHING_ELSE", "reason": "x"}))
+    with direct_vm.expect_revert("invalid_response_shape"):
+        contract.assess_dimension(proposal_id, "PERMISSIONS")
+    assert contract.get_proposal(proposal_id)["assessments"] == {}
+
+
 def test_owner_baseline_and_proposal_constraints(direct_vm, direct_deploy, direct_alice, direct_bob):
     direct_vm.warp("2026-10-01T00:00:00Z")
     direct_vm.sender = direct_alice
