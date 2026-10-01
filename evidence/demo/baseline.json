@@ -1,0 +1,1 @@
+{"files":[{"path":"evidence/demo/module.py","sha256":"aa62fa49ec9bc82287ad2017fd1aa4a6fefb2ce7e1a13de2fa27661e6f736074","url":"https://raw.githubusercontent.com/Demigodd00/release-guard/e35183853da39e8ddc8066037220f148b6eaa56d/evidence/demo/module.py"}],"migration_notes":"Baseline version; existing records are copied without schema changes.","version":"1.0.0"}
